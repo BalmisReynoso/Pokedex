@@ -8,6 +8,10 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      base: '/Pokedex/',
+      scope: '/Pokedex/',
+      filename: 'sw.js',
+      injectManifest: false,
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
         name: 'Pokedex HeartGold Tracker',
