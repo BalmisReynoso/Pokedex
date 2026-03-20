@@ -4,6 +4,35 @@
 
 @layer base {
   body {
-    @apply m-0 font-sans;
+    @apply m-0 font-sans transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
+  
+  .dark .bg-white {
+    @apply bg-gray-800 !important;
+  }
+  .dark .text-gray-800 {
+    @apply text-gray-100 !important;
+  }
+  .dark .text-gray-600 {
+    @apply text-gray-300 !important;
+  }
+  .dark .bg-gray-50 {
+    @apply bg-gray-700 !important;
+  }
+  .dark .bg-gray-100 {
+    @apply bg-gray-900 text-gray-100 !important;
+  }
+  .dark .border-gray-200 {
+    @apply border-gray-600 !important;
+  }
+  .dark .border-gray-100 {
+    @apply border-gray-700 !important;
+  }
+  .dark .text-gray-500 {
+    @apply text-gray-400 !important;
   }
 }

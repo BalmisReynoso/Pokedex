@@ -3,7 +3,7 @@ import {
   Shield, Sword, Navigation, AlertCircle, Edit2, Save, X, Activity, 
   MapPin, Award, Briefcase, RotateCcw, CheckSquare, Square, ChevronDown, 
   Info, ArrowUpCircle, CheckCircle2, Target, PieChart, Map, Crosshair, 
-  BookOpen, Zap, Download, Upload, Copy, Database, Trophy, TrendingUp, Calculator
+  BookOpen, Zap, Download, Upload, Copy, Database, Trophy, TrendingUp, Calculator, Moon, Sun
 } from 'lucide-react';
 
 // --- BASE DE DATOS DE EVENTOS Y LUGARES ---
@@ -292,6 +292,20 @@ export default function App() {
     } catch (e) { return defaultData; }
   });
 
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('bubloy-theme') === 'dark';
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('bubloy-theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('bubloy-theme', 'light');
+    }
+  }, [isDarkMode]);
+
   const [editingPokemon, setEditingPokemon] = useState(null);
   const [activeTab, setActiveTab] = useState('main'); // main, hm, legendaries, frontier, calc
   const [showDataModal, setShowDataModal] = useState(false);
@@ -503,7 +517,16 @@ export default function App() {
                 </select>
                 <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-yellow-700 pointer-events-none" size={16} />
               </div>
-              <button onClick={() => setShowDataModal(true)} className="bg-gray-800 text-white p-2 rounded-xl flex items-center gap-2 shadow-sm active:bg-gray-700"><Database size={16} /> Guardado</button>
+              <button onClick={() => setShowDataModal(true)} className="bg-gray-800 dark:bg-gray-600 text-white p-2 rounded-xl flex items-center gap-2 shadow-sm active:bg-gray-700 hover:bg-gray-700 transition" title="Datos de guardado">
+                <Database size={16} /> <span className="hidden md:inline">Guardado</span>
+              </button>
+              <button 
+                onClick={() => setIsDarkMode(!isDarkMode)} 
+                className="bg-gray-800 dark:bg-yellow-400 text-white dark:text-gray-900 p-2 rounded-xl flex items-center justify-center shadow-sm active:scale-95 transition"
+                title="Cambiar Modo Oscuro"
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
             </div>
           </div>
         </div>
